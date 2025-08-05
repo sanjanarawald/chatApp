@@ -1,0 +1,91 @@
+/* Chat Message Layout */
+.chat-message {
+    display: flex;
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.chat-message.own-message {
+    margin-left: auto;
+    flex-direction: row-reverse;
+}
+
+.chat-profile-pic {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: 0 0.5rem;
+    align-self: flex-end;
+}
+
+.chat-profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.chat-bubble.other-bubble {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-top-left-radius: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+.chat-bubble.own-bubble {
+    background-color: #822921;
+    color: white;
+    border-top-right-radius: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+.chat-sender-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    color: #4b5563;
+}
+
+.chat-timestamp {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+    text-align: right;
+}
+
+.chat-bubble.own-bubble .chat-timestamp {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Ensure group profile image displays properly */
+.flex.items-center.space-x-4 img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Message container */
+#messages {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #f9fafb;
+}
+
+/* Hide profile picture for own messages */
+.chat-message.own-message .chat-profile-pic {
+    display: none;
+}

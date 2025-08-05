@@ -1,0 +1,82 @@
+<div class="flex flex-col h-screen max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden" id="chat-container" data-username="{{username}}">
+    <div class="p-4 flex justify-between items-center bg-white border-b-2">
+        <div class="flex items-center space-x-4">
+            <a href="javascript:history.back()" class="text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </a>
+            <img src="/img/group-profile.png" alt="Group Profile" class="h-10 w-10 rounded-full object-cover" onerror="this.src='/img/default-profile.png'">
+            <h2 class="text-xl font-bold text-gray-800">Fun Friday Group</h2>
+        </div>
+        <button id="anonymous-toggle-btn" class="text-gray-800 focus:outline-none relative" style="color: #822921; border: 2px solid #822921; border-radius: 9999px; padding: 0.25rem;">
+            <i class="fas fa-ghost h-6 w-6"></i>
+            <span class="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 h-3 w-3 rounded-full bg-gray-500 border-2 border-white"></span>
+        </button>
+    </div>
+
+    <div id="messages" class="flex-1 overflow-y-auto">
+        {{#if messages}}
+            {{#each messages}}
+                {{#if (eq this.username ../username)}}
+                    <div class="chat-message own-message">
+                        <div class="chat-bubble own-bubble">
+                            <p class="mb-1">{{this.message}}</p>
+                            
+                            <span class="chat-timestamp">{{this.created_at}}</span>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="chat-message">
+                        <div class="chat-profile-pic">
+                            {{#if this.profile_pic_url}}
+                                <img src="{{this.profile_pic_url}}" alt="{{this.username}}" onerror="this.src='/img/default-profile.png'">
+                            {{else}}
+                                <img src="/img/default-profile.png" alt="{{this.username}}">
+                            {{/if}}
+                        </div>
+                        <div class="chat-bubble other-bubble">
+                            <span class="chat-sender-name">{{this.username}}</span>
+                            <p class="mb-1">{{this.message}}</p>
+                            <span class="chat-timestamp">{{this.created_at}}</span>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        {{else}}
+            <div class="flex items-center justify-center h-full">
+                <div class="text-center text-gray-500 py-4">No messages yet. Start the conversation!</div>
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="p-4 border-t border-gray-200 bg-white">
+        <form id="messageForm" class="flex items-center space-x-2">
+            <div class="relative flex-grow">
+                <input type="text" id="messageInput"
+                    class="block w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="Type a message..." autocomplete="off">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 space-x-2">
+                    <button type="button" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.842-1.263a2 2 0 011.664-.89h2.868a2 2 0 011.664.89l.842 1.263a2 2 0 001.664.89H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                    <button type="button" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button type="submit"
+                class="px-4 py-2 bg-indigo-600 text-white rounded-full focus:outline-none"
+                style="background-color: #822921; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
