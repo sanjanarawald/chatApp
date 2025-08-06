@@ -1,3 +1,8 @@
+/* ADDED: Remove scrollbar from the main window */
+body {
+    /* overflow: hidden; */
+}
+
 /* Chat Message Layout */
 .chat-message {
     display: flex;

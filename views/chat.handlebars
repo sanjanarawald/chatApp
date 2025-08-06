@@ -1,5 +1,6 @@
-<div class="flex flex-col h-screen max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden" id="chat-container" data-username="{{username}}">
-    <div class="p-4 flex justify-between items-center bg-white border-b-2">
+<div class="h-screen flex items-center justify-center">
+  <div class="flex flex-col max-w-4xl w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden" style="height: calc(100vh - 80px);" id="chat-container" data-username="{{username}}">
+    <div class="p-5 flex justify-between items-center bg-white border-b-2">
         <div class="flex items-center space-x-4">
             <a href="javascript:history.back()" class="text-gray-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -14,15 +15,13 @@
             <span class="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 h-3 w-3 rounded-full bg-gray-500 border-2 border-white"></span>
         </button>
     </div>
-
-    <div id="messages" class="flex-1 overflow-y-auto">
+    <div id="messages" class="flex-1 overflow-y-auto min-h-0">
         {{#if messages}}
             {{#each messages}}
                 {{#if (eq this.username ../username)}}
                     <div class="chat-message own-message">
                         <div class="chat-bubble own-bubble">
                             <p class="mb-1">{{this.message}}</p>
-                            
                             <span class="chat-timestamp">{{this.created_at}}</span>
                         </div>
                     </div>
@@ -49,8 +48,7 @@
             </div>
         {{/if}}
     </div>
-
-    <div class="p-4 border-t border-gray-200 bg-white">
+    <div class="p-5 border-t border-gray-200 bg-white flex-shrink-0">
         <form id="messageForm" class="flex items-center space-x-2">
             <div class="relative flex-grow">
                 <input type="text" id="messageInput"
@@ -79,4 +77,5 @@
             </button>
         </form>
     </div>
+  </div>
 </div>

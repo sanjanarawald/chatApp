@@ -104,28 +104,17 @@ anonymousToggleBtn.addEventListener('click', () => {
             // Handle anonymous messages from other users
             if (isAnonymousMessage) {
                 messageElement.classList.add('anonymous-message');
-                messageElement.innerHTML = `
-                    <div class="chat-profile-pic" style="display: none;">
-                        <img src="${effectiveProfilePicUrl}" alt="${name}" onerror="this.src='/img/default-profile.png'">
-                    </div>
-                    <div class="chat-bubble other-bubble">
-                        <span class="chat-sender-name" style="display: none;">${name}</span>
-                        <p class="mb-1">${message}</p>
-                        <span class="chat-timestamp">${formatTime(timestamp)}</span>
-                    </div>
-                `;
-            } else {
-                messageElement.innerHTML = `
-                    <div class="chat-profile-pic">
-                        <img src="${effectiveProfilePicUrl}" alt="${name}" onerror="this.src='/img/default-profile.png'">
-                    </div>
-                    <div class="chat-bubble other-bubble">
-                        <span class="chat-sender-name">${name}</span>
-                        <p class="mb-1">${message}</p>
-                        <span class="chat-timestamp">${formatTime(timestamp)}</span>
-                    </div>
-                `;
             }
+            messageElement.innerHTML = `
+                <div class="chat-profile-pic">
+                    <img src="${effectiveProfilePicUrl}" alt="${name}" onerror="this.src='/img/default-profile.png'">
+                </div>
+                <div class="chat-bubble other-bubble">
+                    <span class="chat-sender-name">${name}</span>
+                    <p class="mb-1">${message}</p>
+                    <span class="chat-timestamp">${formatTime(timestamp)}</span>
+                </div>
+            `;
         }
 
         // If this is the first message, remove the "No messages" placeholder
